@@ -1,45 +1,41 @@
 import React from "react";
+import FormButton from "components/common/FormButton";
+import FormContainer from "components/common/FormContainer";
+import FormHeader from "components/common/FormHeader";
+import FormInput from "components/common/FormInput";
+import FormLabel from "components/common/FormLabel";
 
 const LoginScreen = () => {
   return (
     <section className="py-12 w-full min-h-max">
-      <div className="w-full max-w-lg m-auto bg-slate-800 rounded px-6 py-10">
-        <h1 className="text-center font-semibold mb-3 tracking-wide">Login</h1>
+      <FormContainer>
+        <FormHeader>Login</FormHeader>
         <form>
           <div>
-            <label className="block mb-2 text-sm" htmlFor="userName">
-              Username
-            </label>
+            <FormLabel htmlFor="username">Username</FormLabel>
 
-            <input
-              className="w-full p-2 mb-6 text-slate-800 bg-slate-400 border-b-2 border-none outline-none focus:bg-slate-300"
+            <FormInput
               placeholder="Username"
               type="text"
               name="username"
-            />
+            ></FormInput>
           </div>
           <div>
-            <label className="block mb-2 text-sm" htmlFor="password">
-              Password
-            </label>
+            <FormLabel htmlFor="password">Password</FormLabel>
 
-            <input
-              className="w-full p-2 mb-6 text-slate-800 bg-slate-400 border-b-2 border-none outline-none focus:bg-slate-300"
+            <FormInput
               placeholder="Password"
               type="password"
               name="password"
-            />
+            ></FormInput>
           </div>
           <div>
-            <button
-              className={`w-full bg-cyan-500 hover:bg-cyan-400 text-white font-bold py-2 px-4 mb-6 rounded tracking-wide transition-all duration-300`}
-              type="submit"
-            >
+            <FormButton type="submit" color="cyan">
               Login
-            </button>
+            </FormButton>
           </div>
         </form>
-      </div>
+      </FormContainer>
     </section>
   );
 };
