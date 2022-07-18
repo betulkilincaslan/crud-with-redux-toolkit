@@ -4,16 +4,16 @@ import FormContainer from "components/common/FormContainer";
 import FormHeader from "components/common/FormHeader";
 import FormInput from "components/common/FormInput";
 import FormLabel from "components/common/FormLabel";
-import { useSelector, useDispatch } from "react-redux/es/exports";
+import { useSelector, useDispatch } from "react-redux";
 import { getUsersAsync, usersLoginData } from "redux/users/usersSlice";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const LoginScreen = () => {
   const dispatch = useDispatch();
-  let loginDataforUsers = useSelector(usersLoginData);
+  const loginDataforUsers = useSelector(usersLoginData);
 
-  let navigate = useNavigate();
+  const navigate = useNavigate();
 
   const [user, setUser] = useState({
     username: "",
