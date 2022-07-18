@@ -1,7 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import TodoTableItem from "./TodoTableItem";
+import { useSelector, useDispatch } from "react-redux";
+import { getTodosAsync, todoData } from "redux/todos/todosSlice";
 
 const TodoTable = () => {
+  const dispatch = useDispatch();
+  const todos = useSelector(todoData);
+
+  useEffect(() => {
+    dispatch(getTodosAsync());
+  }, [dispatch]);
+
   return (
     <section className="py-12 text-center w-full min-h-max">
       <div className="grid grid-cols-1 bg-slate-800">
@@ -20,7 +29,7 @@ const TodoTable = () => {
                       </th>
                       <th
                         scope="col"
-                        className="text-sm font-medium px-6 py-4 text-center"
+                        className="text-sm font-medium px-6 py-4 text-left"
                       >
                         Title
                       </th>
@@ -45,7 +54,9 @@ const TodoTable = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    <TodoTableItem />
+                    {todos.map((todo) => (
+                      <TodoTableItem key={todo.id} todo={todo} />
+                    ))}
                   </tbody>
                 </table>
               </div>
