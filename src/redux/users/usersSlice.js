@@ -25,6 +25,7 @@ export const usersSlice = createSlice({
     },
     [getUsersAsync.fulfilled]: (state, action) => {
       state.userItems = action.payload;
+      state.isLoading = false;
     },
     [getUsersAsync.rejected]: (state, action) => {
       state.isLoading = false;
