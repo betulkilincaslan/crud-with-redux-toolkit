@@ -22,6 +22,14 @@ export const addTodosAsync = createAsyncThunk(
   }
 );
 
+export const deleteTodosAsync = createAsyncThunk(
+  "todos/deleteTodosAsync",
+  async (id) => {
+    await axios.delete(`${process.env.REACT_APP_API_BASE_URL}/todos/${id}`);
+    return id;
+  }
+);
+
 export const todosSlice = createSlice({
   name: "todos",
   initialState: {
@@ -64,6 +72,14 @@ export const todosSlice = createSlice({
     [addTodosAsync.rejected]: (state, action) => {
       state.addNewTodo.isLoading = false;
       state.addNewTodo.error = action.error.message;
+    },
+    // delete new todo
+    [deleteTodosAsync.fulfilled]: (state, action) => {
+      const id = action.payload;
+      const filtredTodos = state.todoItems.filter(
+        (todoItem) => todoItem.id !== id
+      );
+      state.todoItems = filtredTodos;
     },
   },
 });

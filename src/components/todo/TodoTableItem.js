@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { toggleCompleted } from "redux/todos/todosSlice";
+import { toggleCompleted, deleteTodosAsync } from "redux/todos/todosSlice";
+import { toast } from "react-toastify";
 
 const TodoTableItem = ({ todo }) => {
   const { userId, id, title, completed } = todo;
@@ -9,6 +10,14 @@ const TodoTableItem = ({ todo }) => {
 
   const changeCompletedHandler = () => {
     dispatch(toggleCompleted({ id }));
+  };
+
+  const deleteTodoHandler = (id) => {
+    if (window.confirm("Are you sure?")) {
+      dispatch(deleteTodosAsync(id));
+    }
+
+    toast.success("Todo deleted successfully!");
   };
 
   return (
@@ -29,7 +38,9 @@ const TodoTableItem = ({ todo }) => {
         <i className="bx bx-edit-alt text-yellow-500 text-2xl cursor-pointer"></i>
       </td>
       <td className="font-light px-6 py-4 whitespace-nowrap">
-        <i className="bx bx-trash text-rose-500 text-2xl cursor-pointer"></i>
+        <span onClick={() => deleteTodoHandler(id)}>
+          <i className="bx bx-trash text-rose-500 text-2xl cursor-pointer"></i>
+        </span>
       </td>
     </tr>
   );
