@@ -1,9 +1,10 @@
+import AddTodoModalContainer from "components/todo/AddTodoModalContainer";
 import TodoTable from "components/todo/TodoTable";
-import React from "react";
 
 const HomeScreen = () => {
   return (
     <>
+      <AddTodoModalContainer />
       <TodoTable />
     </>
   );
