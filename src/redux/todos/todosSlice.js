@@ -11,12 +11,27 @@ export const getTodosAsync = createAsyncThunk(
   }
 );
 
+export const addTodosAsync = createAsyncThunk(
+  "todos/addTodosAsync",
+  async (newTodo) => {
+    const { data } = await axios.post(
+      `${process.env.REACT_APP_API_BASE_URL}/todos`,
+      newTodo
+    );
+    return data;
+  }
+);
+
 export const todosSlice = createSlice({
   name: "todos",
   initialState: {
     todoItems: [],
     isLoading: false,
     error: null,
+    addNewTodo: {
+      isLoading: false,
+      error: false,
+    },
   },
   reducers: {
     toggleCompleted: (state, action) => {
@@ -26,6 +41,7 @@ export const todosSlice = createSlice({
     },
   },
   extraReducers: {
+    // get todos
     [getTodosAsync.pending]: (state, action) => {
       state.isLoading = true;
     },
@@ -36,6 +52,18 @@ export const todosSlice = createSlice({
     [getTodosAsync.rejected]: (state, action) => {
       state.isLoading = false;
       state.error = action.error.message;
+    },
+    // add new todo
+    [addTodosAsync.pending]: (state, action) => {
+      state.addNewTodo.isLoading = true;
+    },
+    [addTodosAsync.fulfilled]: (state, action) => {
+      state.todoItems.push(action.payload);
+      state.addNewTodo.isLoading = false;
+    },
+    [addTodosAsync.rejected]: (state, action) => {
+      state.addNewTodo.isLoading = false;
+      state.addNewTodo.error = action.error.message;
     },
   },
 });

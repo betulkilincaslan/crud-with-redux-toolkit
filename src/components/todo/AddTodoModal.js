@@ -1,10 +1,50 @@
+import React, { useState } from "react";
 import FormButton from "components/common/FormButton";
 import FormContainer from "components/common/FormContainer";
 import FormHeader from "components/common/FormHeader";
 import FormInput from "components/common/FormInput";
 import FormLabel from "components/common/FormLabel";
+import { useDispatch } from "react-redux";
+import { addTodosAsync } from "redux/todos/todosSlice";
+import { toast } from "react-toastify";
 
 const AddTodoModal = ({ setShowAddTodoModal }) => {
+  const dispatch = useDispatch();
+
+  const [todoFields, setTodoFields] = useState({
+    userId: "",
+    title: "",
+    completed: false,
+  });
+  const { userId, title, completed } = todoFields;
+
+  const onInputChangeHandler = (e) => {
+    setTodoFields({
+      ...todoFields,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const onFormSubmitHandler = async (e) => {
+    e.preventDefault();
+
+    if (!userId || !title) {
+      return toast.warning("Please fill in all fields!");
+    }
+
+    const newTodoData = {
+      userId,
+      title,
+      completed,
+    };
+
+    await dispatch(addTodosAsync(newTodoData));
+
+    toast.success("Todo added successfully!");
+
+    setShowAddTodoModal(false);
+  };
+
   return (
     <>
       <div className="overflow-x-hidden overflow-y-auto fixed inset-0 z-50">
@@ -23,7 +63,7 @@ const AddTodoModal = ({ setShowAddTodoModal }) => {
               </div>
               <FormHeader>Add Todo</FormHeader>
 
-              <form>
+              <form onSubmit={(e) => onFormSubmitHandler(e)}>
                 <div>
                   <FormLabel htmlFor="userId">User Id</FormLabel>
 
@@ -32,6 +72,8 @@ const AddTodoModal = ({ setShowAddTodoModal }) => {
                     min="1"
                     name="userId"
                     placeholder="userId"
+                    value={userId}
+                    onChange={(e) => onInputChangeHandler(e)}
                   ></FormInput>
                 </div>
                 <div>
@@ -41,14 +83,9 @@ const AddTodoModal = ({ setShowAddTodoModal }) => {
                     type="text"
                     name="title"
                     placeholder="title"
+                    value={title}
+                    onChange={(e) => onInputChangeHandler(e)}
                   ></FormInput>
-                </div>
-                <div className="flex mb-3">
-                  <FormLabel htmlFor="completed">Completed</FormLabel>
-                  <input
-                    type="checkbox"
-                    className="accent-cyan-300 md:accent-cyan-500 cursor-pointer w-4 h-4 ml-2"
-                  />
                 </div>
 
                 <div>
