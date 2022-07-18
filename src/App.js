@@ -1,10 +1,8 @@
 import ProtectedRoute from "components/routing/ProtectedRoute";
 import { Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
-import AddTodoScreen from "screens/AddTodoScreen";
 import HomeScreen from "screens/HomeScreen";
 import LoginScreen from "screens/LoginScreen";
-import UpdateTodoScreen from "screens/UpdateTodoScreen";
 
 const App = () => {
   return (
@@ -20,8 +18,6 @@ const App = () => {
             </ProtectedRoute>
           }
         />
-        <Route path="/add" element={<AddTodoScreen />} />
-        <Route path="/:id" element={<UpdateTodoScreen />} />
       </Routes>
     </main>
   );
