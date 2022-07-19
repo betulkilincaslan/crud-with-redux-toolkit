@@ -18,6 +18,9 @@ module.exports = {
 
         peterRiver: "#3498db",
         belizeHole: "#2980b9",
+
+        carrot: "#e67e22",
+        pumpkin: "#d35400",
       },
     },
   },

@@ -12,12 +12,10 @@ const TodoTableItem = ({ todo, updateTodoHandler, deleteTodoHandler }) => {
   };
 
   return (
-    <tr className="border-b">
-      <td className="font-light px-6 py-4 whitespace-nowrap">{userId}</td>
-      <td className="font-light px-6 py-4 whitespace-nowrap text-left">
-        {title}
-      </td>
-      <td className="font-light px-6 py-4 whitespace-nowrap">
+    <tr className="border-b-4 border-midnightBlue">
+      <td className="font-light px-6 whitespace-nowrap">{userId}</td>
+      <td className="font-light px-6 whitespace-nowrap text-left">{title}</td>
+      <td className="font-light px-6 whitespace-nowrap">
         <input
           type="checkbox"
           className="accent-cyan-300 md:accent-cyan-500 cursor-pointer w-4 h-4"
@@ -27,12 +25,12 @@ const TodoTableItem = ({ todo, updateTodoHandler, deleteTodoHandler }) => {
       </td>
       <td className="font-light px-6 py-4 whitespace-nowrap">
         <span onClick={() => updateTodoHandler(id)}>
-          <i className="bx bx-edit-alt text-yellow-500 text-2xl cursor-pointer"></i>
+          <i className="bx bx-edit-alt text-belizeHole hover:text-peterRiver text-2xl cursor-pointer"></i>
         </span>
       </td>
       <td className="font-light px-6 py-4 whitespace-nowrap">
         <span onClick={() => deleteTodoHandler(id)}>
-          <i className="bx bx-trash text-rose-500 text-2xl cursor-pointer"></i>
+          <i className="bx bx-trash text-pumpkin hover:text-carrot text-2xl cursor-pointer"></i>
         </span>
       </td>
     </tr>

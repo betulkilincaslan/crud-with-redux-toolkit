@@ -2,7 +2,7 @@ import FormInput from "components/common/FormInput";
 
 const SearchContainer = ({ onSearchInputChangeHandler, searchField }) => {
   return (
-    <div className="py-4">
+    <div className="py-4 mx-4">
       <FormInput
         placeholder="Search Todo"
         type="text"
