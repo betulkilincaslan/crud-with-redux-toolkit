@@ -1,5 +1,5 @@
-import ModalContainer from "components/common/ModalContainer";
-import FormHeader from "components/common/FormHeader";
+import ModalContainer from "components/common/modal/ModalContainer";
+import FormHeader from "components/common/form/FormHeader";
 import { toast } from "react-toastify";
 import { deleteTodosAsync } from "redux/todos/todosSlice";
 import { useDispatch } from "react-redux";

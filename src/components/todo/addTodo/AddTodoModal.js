@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import FormButton from "components/common/FormButton";
-import FormContainer from "components/common/FormContainer";
-import FormHeader from "components/common/FormHeader";
-import FormInput from "components/common/FormInput";
+import FormButton from "components/common/form/FormButton";
+import FormContainer from "components/common/form/FormContainer";
+import FormHeader from "components/common/form/FormHeader";
+import FormInput from "components/common/form/FormInput";
 import { useDispatch } from "react-redux";
 import { addTodosAsync } from "redux/todos/todosSlice";
 import { toast } from "react-toastify";
-import ModalContainer from "components/common/ModalContainer";
+import ModalContainer from "components/common/modal/ModalContainer";
 
 const AddTodoModal = ({ setShowAddTodoModal }) => {
   const dispatch = useDispatch();

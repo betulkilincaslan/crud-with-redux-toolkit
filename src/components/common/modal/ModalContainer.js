@@ -6,7 +6,7 @@ export default function ModalContainer({ children, type, onClose, onConfirm }) {
     <>
       <div className="overflow-x-hidden overflow-y-auto fixed inset-0 z-50 top-24">
         <div className="relative my-6 mx-auto max-w-xl">
-          <div className="shadow-lg relative flex flex-col w-full bg-slate-800 px-2 py-4">
+          <div className="shadow-lg relative flex flex-col w-full bg-wetAsphalt px-2 py-4">
             <ModalHeader onClose={onClose} />
 
             {children}

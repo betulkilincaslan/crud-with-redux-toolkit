@@ -1,4 +1,4 @@
-import FormInput from "components/common/FormInput";
+import FormInput from "components/common/form/FormInput";
 
 const SearchContainer = ({ onSearchInputChangeHandler, searchField }) => {
   return (

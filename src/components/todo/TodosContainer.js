@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import TodoTableItem from "./TodoTableItem";
-import UpdateTodoModal from "./UpdateTodoModal";
-import DeleteTodoModal from "./DeleteTodoModal";
+import TodoItem from "./TodosContainer";
+import UpdateTodoModal from "./updateTodo/UpdateTodoModal";
+import DeleteTodoModal from "./deleteTodo/DeleteTodoModal";
 import SearchContainer from "components/search/SearchContainer";
 import { useSelector } from "react-redux";
 import { sortTodosByIdDescending } from "redux/todos/todosSlice";
 
-const TodoTable = ({ todos }) => {
+const TodosContainer = ({ todos }) => {
   const sortedTodos = useSelector(sortTodosByIdDescending);
   const [updatedTodoItem, setUpdatedTodoItem] = useState({});
   const [showUpdateTodoModal, setShowUpdateTodoModal] = useState(false);
@@ -29,7 +29,7 @@ const TodoTable = ({ todos }) => {
         todo.userId.toString().match(new RegExp(searchField, "i"))
     );
     setFilteredTodos(filteredTodos);
-  }, [searchField]);
+  }, [searchField, sortedTodos]);
 
   const updateTodoHandler = (id) => {
     const updatedItem = todos.filter((todo) => todo.id === id);
@@ -69,53 +69,22 @@ const TodoTable = ({ todos }) => {
                     onSearchInputChangeHandler={onSearchInputChangeHandler}
                     searchField={searchField}
                   />
+                  <div className="md:grid grid-cols-10 gap-2 hidden">
+                    <div>userId</div>
+                    <div className="col-span-6 text-left">Title</div>
+                    <div>Completed</div>
+                    <div>Edit</div>
+                    <div>Delete</div>
+                  </div>
 
-                  <table className="min-w-full">
-                    <thead className="border-b-4 border-midnightBlue">
-                      <tr>
-                        <th
-                          scope="col"
-                          className="text-sm font-medium px-6 py-4 text-left"
-                        >
-                          userId
-                        </th>
-                        <th
-                          scope="col"
-                          className="text-sm font-medium px-6 py-4 text-left"
-                        >
-                          Title
-                        </th>
-                        <th
-                          scope="col"
-                          className="text-sm font-medium px-6 py-4 text-center"
-                        >
-                          Completed
-                        </th>
-                        <th
-                          scope="col"
-                          className="text-sm font-medium px-6 py-4 text-center"
-                        >
-                          Edit
-                        </th>
-                        <th
-                          scope="col"
-                          className="text-sm font-medium px-6 py-4 text-center"
-                        >
-                          Delete
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {filteredTodos.map((todo) => (
-                        <TodoTableItem
-                          key={todo.id}
-                          todo={todo}
-                          updateTodoHandler={updateTodoHandler}
-                          deleteTodoHandler={deleteTodoHandler}
-                        />
-                      ))}
-                    </tbody>
-                  </table>
+                  {filteredTodos.map((todo) => (
+                    <TodoItem
+                      key={todo.id}
+                      todo={todo}
+                      updateTodoHandler={updateTodoHandler}
+                      deleteTodoHandler={deleteTodoHandler}
+                    />
+                  ))}
                 </div>
               </div>
             </div>
@@ -126,4 +95,4 @@ const TodoTable = ({ todos }) => {
   );
 };
 
-export default TodoTable;
+export default TodosContainer;

@@ -1,10 +1,9 @@
-import AddTodoContainer from "components/todo/AddTodoContainer";
-import TodoTable from "components/todo/TodoTable";
+import AddTodoContainer from "components/todo/addTodo/AddTodoContainer";
 import { useSelector, useDispatch } from "react-redux";
 import { getTodosAsync, todoData } from "redux/todos/todosSlice";
 import Spinner from "components/common/Spinner";
 import { useEffect } from "react";
-import SearchContainer from "components/search/SearchContainer";
+import TodosContainer from "components/todo/TodosContainer";
 
 const HomeScreen = () => {
   const dispatch = useDispatch();
@@ -22,7 +21,7 @@ const HomeScreen = () => {
       ) : (
         <>
           <AddTodoContainer />
-          <TodoTable todos={todos} />
+          <TodosContainer todos={todos} />
         </>
       )}
     </>

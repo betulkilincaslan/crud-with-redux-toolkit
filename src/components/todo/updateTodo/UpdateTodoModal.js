@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-import FormButton from "components/common/FormButton";
-import FormContainer from "components/common/FormContainer";
-import FormHeader from "components/common/FormHeader";
-import FormInput from "components/common/FormInput";
+import FormButton from "components/common/form/FormButton";
+import FormContainer from "components/common/form/FormContainer";
+import FormHeader from "components/common/form/FormHeader";
+import FormInput from "components/common/form/FormInput";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import { updateTodosAsync } from "redux/todos/todosSlice";
-import ModalContainer from "components/common/ModalContainer";
+import ModalContainer from "components/common/modal/ModalContainer";
 
 const UpdateTodoModal = ({ updatedTodoItem, setShowUpdateTodoModal }) => {
   const dispatch = useDispatch();
@@ -74,7 +74,7 @@ const UpdateTodoModal = ({ updatedTodoItem, setShowUpdateTodoModal }) => {
           <div className="flex mb-3">
             <input
               type="checkbox"
-              className="accent-cyan-300 md:accent-cyan-500 cursor-pointer w-4 h-4 ml-2"
+              className="accent-belizeHole md:accent-peterRiver cursor-pointer w-4 h-4 ml-2"
               checked={updatedTodoCompleted}
               onChange={() => setUpdatedTodoCompleted(!updatedTodoCompleted)}
             />
