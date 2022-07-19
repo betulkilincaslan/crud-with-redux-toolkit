@@ -102,5 +102,10 @@ export const todosSlice = createSlice({
 });
 
 export const todoData = (state) => state.todos.todoItems;
+export const sortTodosByIdDescending = (state) => {
+  let todosArr = [...state.todos.todoItems];
+  return todosArr.sort((a, b) => (b.id > a.id ? 1 : -1));
+};
+
 export const { toggleCompleted } = todosSlice.actions;
 export default todosSlice.reducer;
