@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import AddTodoButton from "./AddTodoButton";
 import AddTodoModal from "./AddTodoModal";
 
-const AddTodoModalContainer = () => {
+const AddTodoContainer = () => {
   const [showAddTodoModal, setShowAddTodoModal] = useState(false);
   return (
     <>
@@ -17,4 +17,4 @@ const AddTodoModalContainer = () => {
   );
 };
 
-export default AddTodoModalContainer;
+export default AddTodoContainer;
