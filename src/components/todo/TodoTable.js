@@ -3,7 +3,7 @@ import TodoTableItem from "./TodoTableItem";
 import UpdateTodoModal from "./UpdateTodoModal";
 import DeleteTodoModal from "./DeleteTodoModal";
 
-const TodoTable = ({ todos }) => {
+const TodoTable = ({ todos, filteredTodos }) => {
   const [updatedTodoItem, setUpdatedTodoItem] = useState({});
   const [showUpdateTodoModal, setShowUpdateTodoModal] = useState(false);
 
@@ -23,9 +23,6 @@ const TodoTable = ({ todos }) => {
     setShowDeleteTodoModal(true);
   };
 
-  let todosArray = [...todos];
-  let sortedTodos = todosArray.sort((a, b) => (b.id > a.id ? 1 : -1));
-
   return (
     <>
       {showUpdateTodoModal && (
@@ -40,6 +37,7 @@ const TodoTable = ({ todos }) => {
           setShowDeleteTodoModal={setShowDeleteTodoModal}
         />
       )}
+
       <section className="py-12 text-center w-full min-h-max">
         <div className="grid grid-cols-1 bg-slate-800">
           <div className="px-2 py-4">
@@ -82,7 +80,7 @@ const TodoTable = ({ todos }) => {
                       </tr>
                     </thead>
                     <tbody>
-                      {sortedTodos.map((todo) => (
+                      {filteredTodos.map((todo) => (
                         <TodoTableItem
                           key={todo.id}
                           todo={todo}
