@@ -7,6 +7,7 @@ import FormLabel from "components/common/FormLabel";
 import { useDispatch } from "react-redux";
 import { addTodosAsync } from "redux/todos/todosSlice";
 import { toast } from "react-toastify";
+import ModalContainer from "components/common/ModalContainer";
 
 const AddTodoModal = ({ setShowAddTodoModal }) => {
   const dispatch = useDispatch();
@@ -45,61 +46,46 @@ const AddTodoModal = ({ setShowAddTodoModal }) => {
     setShowAddTodoModal(false);
   };
 
+  const closeModalHandler = () => {
+    setShowAddTodoModal(false);
+  };
+
   return (
-    <>
-      <div className="overflow-x-hidden overflow-y-auto fixed inset-0 z-50">
-        <div className="relative w-auto my-6 mx-auto max-w-3xl">
-          <section className="py-12 w-full min-h-max fixed inset-0 top-20">
-            <FormContainer>
-              <div className="flex">
-                <span className="ml-auto">
-                  <i
-                    className="bx bx-x text-white text-2xl p-1 cursor-pointer"
-                    onClick={() => {
-                      setShowAddTodoModal(false);
-                    }}
-                  ></i>
-                </span>
-              </div>
-              <FormHeader>Add Todo</FormHeader>
+    <ModalContainer onClose={closeModalHandler}>
+      <FormContainer>
+        <FormHeader>Add Todo</FormHeader>
 
-              <form onSubmit={(e) => onFormSubmitHandler(e)}>
-                <div>
-                  <FormLabel htmlFor="userId">User Id</FormLabel>
+        <form onSubmit={(e) => onFormSubmitHandler(e)}>
+          <div>
+            <FormLabel htmlFor="userId">User Id</FormLabel>
 
-                  <FormInput
-                    type="number"
-                    min="1"
-                    name="userId"
-                    placeholder="userId"
-                    value={userId}
-                    onChange={(e) => onInputChangeHandler(e)}
-                  ></FormInput>
-                </div>
-                <div>
-                  <FormLabel htmlFor="title">Title</FormLabel>
+            <FormInput
+              type="number"
+              min="1"
+              name="userId"
+              placeholder="userId"
+              value={userId}
+              onChange={(e) => onInputChangeHandler(e)}
+            ></FormInput>
+          </div>
+          <div>
+            <FormLabel htmlFor="title">Title</FormLabel>
 
-                  <FormInput
-                    type="text"
-                    name="title"
-                    placeholder="title"
-                    value={title}
-                    onChange={(e) => onInputChangeHandler(e)}
-                  ></FormInput>
-                </div>
+            <FormInput
+              type="text"
+              name="title"
+              placeholder="title"
+              value={title}
+              onChange={(e) => onInputChangeHandler(e)}
+            ></FormInput>
+          </div>
 
-                <div>
-                  <FormButton type="submit" color="cyan">
-                    Add Todo
-                  </FormButton>
-                </div>
-              </form>
-            </FormContainer>
-          </section>
-        </div>
-      </div>
-      <div className="opacity-40 fixed inset-0 z-40 bg-black"></div>
-    </>
+          <div>
+            <FormButton type="submit">Add Todo</FormButton>
+          </div>
+        </form>
+      </FormContainer>
+    </ModalContainer>
   );
 };
 
