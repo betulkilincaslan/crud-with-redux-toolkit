@@ -75,9 +75,7 @@ const LoginScreen = () => {
             ></FormInput>
           </div>
           <div>
-            <FormButton type="submit" color="cyan">
-              Login
-            </FormButton>
+            <FormButton type="submit">Login</FormButton>
           </div>
         </form>
       </FormContainer>
