@@ -5,16 +5,19 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        fuelTown: "#576574",
-        imperialPrimer: "#222f3e",
-        lightBlueBallerina: "#ecf0f1",
-        stormPetrel: "#8395a7",
-        pastelRed: "#ff6b6b",
-        amour: "#ee5253",
-        casandoraYellow: "#feca57",
-        doubleDragonSkin: "#ff9f43",
-        wildCaribbean: "#1dd1a1",
-        darkMountain: "#10ac84",
+        clouds: "#ecf0f1",
+        silver: "#bdc3c7",
+        concrete: "#95a5a6",
+        asbestos: "#7f8c8d",
+
+        midnightBlue: "#2c3e50",
+        wetAsphalt: "#34495e",
+
+        emerald: "#2ecc71",
+        nephritis: "#27ae60",
+
+        peterRiver: "#3498db",
+        belizeHole: "#2980b9",
       },
     },
   },
