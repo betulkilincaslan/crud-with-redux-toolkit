@@ -1,7 +1,7 @@
-const FormLabel = (props) => {
+const FormLabel = ({ children, htmlFor }) => {
   return (
-    <label className="block mb-2 text-sm" htmlFor={props.htmlFor}>
-      {props.children}
+    <label className="block mb-2 text-sm" htmlFor={htmlFor}>
+      {children}
     </label>
   );
 };

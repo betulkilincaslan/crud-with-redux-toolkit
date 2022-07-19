@@ -1,8 +1,6 @@
-const FormHeader = (props) => {
+const FormHeader = ({ children }) => {
   return (
-    <h1 className="text-center font-semibold mb-3 tracking-wide">
-      {props.children}
-    </h1>
+    <h1 className="text-center font-semibold mb-3 tracking-wide">{children}</h1>
   );
 };
 

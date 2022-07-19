@@ -1,11 +1,11 @@
-const FormButton = (props) => {
+const FormButton = ({ children, type, onClick }) => {
   return (
     <button
-      className={`w-full bg-${props.color}-500 hover:bg-${props.color}-400 text-white font-bold py-2 px-4 rounded tracking-wide transition-all duration-300`}
-      type={props.type || "button"}
-      onClick={props.onClick}
+      className={`w-full bg-cyan-600 hover:bg-cyan-500 text-white font-bold py-2 px-4 tracking-wide transition-all duration-300`}
+      type={type || "button"}
+      onClick={onClick}
     >
-      {props.children}
+      {children}
     </button>
   );
 };
