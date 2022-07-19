@@ -1,3 +1,4 @@
+import ScrollToTopButton from "components/common/ScrollToTopButton";
 import ProtectedRoute from "components/routing/ProtectedRoute";
 import { Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
@@ -7,6 +8,7 @@ import LoginScreen from "screens/LoginScreen";
 const App = () => {
   return (
     <main className="container mx-auto px-4 py-12 max-w-6xl">
+      <ScrollToTopButton />
       <ToastContainer />
       <Routes>
         <Route index element={<LoginScreen />} />
