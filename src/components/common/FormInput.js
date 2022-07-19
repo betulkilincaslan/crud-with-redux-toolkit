@@ -1,7 +1,7 @@
 const FormInput = ({ placeholder, type, name, value, onChange, min }) => {
   return (
     <input
-      className="w-full p-2 mb-6 text-slate-800 bg-slate-400 border-b-2 border-none outline-none focus:bg-slate-300"
+      className="w-full p-2 mb-6 text-imperialPrimer bg-lightBlueBallerina border-b-2 border-none outline-none rounded-md focus:bg-stormPetrel"
       placeholder={placeholder}
       type={type}
       name={name}
