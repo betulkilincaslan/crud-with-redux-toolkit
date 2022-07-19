@@ -37,11 +37,11 @@ const HomeScreen = () => {
         <Spinner />
       ) : (
         <>
-          <AddTodoContainer />
           <SearchContainer
             onSearchInputChangeHandler={onSearchInputChangeHandler}
             searchField={searchField}
           />
+          <AddTodoContainer />
           <TodoTable todos={todos} filteredTodos={filteredTodos} />
         </>
       )}

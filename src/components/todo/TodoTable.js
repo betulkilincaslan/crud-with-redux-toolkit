@@ -38,7 +38,7 @@ const TodoTable = ({ todos, filteredTodos }) => {
         />
       )}
 
-      <section className="py-12 text-center w-full min-h-max">
+      <section className="py-4 text-center w-full min-h-max">
         <div className="grid grid-cols-1 bg-slate-800">
           <div className="px-2 py-4">
             <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">

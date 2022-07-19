@@ -1,11 +1,8 @@
 import FormInput from "components/common/FormInput";
-import FormLabel from "components/common/FormLabel";
 
 const SearchContainer = ({ onSearchInputChangeHandler, searchField }) => {
   return (
-    <div className="">
-      <FormLabel htmlFor="username">Search todo by userID or title</FormLabel>
-
+    <div className="py-4">
       <FormInput
         placeholder="Search Todo"
         type="text"

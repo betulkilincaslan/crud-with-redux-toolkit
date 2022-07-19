@@ -3,7 +3,6 @@ import FormButton from "components/common/FormButton";
 import FormContainer from "components/common/FormContainer";
 import FormHeader from "components/common/FormHeader";
 import FormInput from "components/common/FormInput";
-import FormLabel from "components/common/FormLabel";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import { updateTodosAsync } from "redux/todos/todosSlice";
@@ -56,32 +55,23 @@ const UpdateTodoModal = ({ updatedTodoItem, setShowUpdateTodoModal }) => {
         <FormHeader> Update Todo with id: {id} </FormHeader>
 
         <form onSubmit={(e) => onFormSubmitHandler(e)}>
-          <div>
-            <FormLabel htmlFor="userId">User Id</FormLabel>
-
-            <FormInput
-              type="number"
-              min="1"
-              name="userId"
-              placeholder="userId"
-              value={updatedUserId}
-              onChange={(e) => setUpdatedUserId(e.target.value)}
-            ></FormInput>
-          </div>
-          <div>
-            <FormLabel htmlFor="title">Title</FormLabel>
-
-            <FormInput
-              type="text"
-              name="title"
-              placeholder="title"
-              value={updatedTodoTitle}
-              onChange={(e) => setUpdatedTodoTitle(e.target.value)}
-            ></FormInput>
-          </div>
+          <FormInput
+            type="number"
+            min="1"
+            name="userId"
+            placeholder="userId"
+            value={updatedUserId}
+            onChange={(e) => setUpdatedUserId(e.target.value)}
+          ></FormInput>
+          <FormInput
+            type="text"
+            name="title"
+            placeholder="title"
+            value={updatedTodoTitle}
+            onChange={(e) => setUpdatedTodoTitle(e.target.value)}
+          ></FormInput>
 
           <div className="flex mb-3">
-            <FormLabel htmlFor="completed">Completed</FormLabel>
             <input
               type="checkbox"
               className="accent-cyan-300 md:accent-cyan-500 cursor-pointer w-4 h-4 ml-2"

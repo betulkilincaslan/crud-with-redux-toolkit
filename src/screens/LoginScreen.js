@@ -3,7 +3,6 @@ import FormButton from "components/common/FormButton";
 import FormContainer from "components/common/FormContainer";
 import FormHeader from "components/common/FormHeader";
 import FormInput from "components/common/FormInput";
-import FormLabel from "components/common/FormLabel";
 import { useSelector, useDispatch } from "react-redux";
 import { getUsersAsync, usersLoginData } from "redux/users/usersSlice";
 import { useNavigate } from "react-router-dom";
@@ -52,28 +51,20 @@ const LoginScreen = () => {
       <FormContainer>
         <FormHeader>Login</FormHeader>
         <form onSubmit={(e) => onSubmitHandler(e)}>
-          <div>
-            <FormLabel htmlFor="username">Username</FormLabel>
-
-            <FormInput
-              placeholder="Username"
-              type="text"
-              name="username"
-              value={username}
-              onChange={(e) => onInputChangeHandler(e)}
-            ></FormInput>
-          </div>
-          <div>
-            <FormLabel htmlFor="password">Password</FormLabel>
-
-            <FormInput
-              placeholder="Password"
-              type="password"
-              name="password"
-              value={password}
-              onChange={(e) => onInputChangeHandler(e)}
-            ></FormInput>
-          </div>
+          <FormInput
+            placeholder="Username"
+            type="text"
+            name="username"
+            value={username}
+            onChange={(e) => onInputChangeHandler(e)}
+          ></FormInput>
+          <FormInput
+            placeholder="Password"
+            type="password"
+            name="password"
+            value={password}
+            onChange={(e) => onInputChangeHandler(e)}
+          ></FormInput>
           <div>
             <FormButton type="submit">Login</FormButton>
           </div>
