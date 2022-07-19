@@ -30,6 +30,17 @@ export const deleteTodosAsync = createAsyncThunk(
   }
 );
 
+export const updateTodosAsync = createAsyncThunk(
+  "todos/updateTodosAsync",
+  async (updatedTodo) => {
+    const { data } = await axios.put(
+      `${process.env.REACT_APP_API_BASE_URL}/todos/${updatedTodo.id}`,
+      updatedTodo
+    );
+    return data;
+  }
+);
+
 export const todosSlice = createSlice({
   name: "todos",
   initialState: {
@@ -44,8 +55,8 @@ export const todosSlice = createSlice({
   reducers: {
     toggleCompleted: (state, action) => {
       const { id } = action.payload;
-      const toggledItem = state.todoItems.find((todo) => todo.id === id);
-      toggledItem.completed = !toggledItem.completed;
+      const index = state.todoItems.findIndex((todo) => todo.id === id);
+      state.todoItems[index].completed = !state.todoItems[index].completed;
     },
   },
   extraReducers: {
@@ -80,6 +91,12 @@ export const todosSlice = createSlice({
         (todoItem) => todoItem.id !== id
       );
       state.todoItems = filtredTodos;
+    },
+    // update todo
+    [updateTodosAsync.fulfilled]: (state, action) => {
+      const id = action.payload.id;
+      const index = state.todoItems.findIndex((todoItem) => todoItem.id === id);
+      state.todoItems[index] = action.payload;
     },
   },
 });
