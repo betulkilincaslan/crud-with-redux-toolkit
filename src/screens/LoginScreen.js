@@ -47,7 +47,7 @@ const LoginScreen = () => {
   };
 
   return (
-    <section className="md:mt-64 mt-52">
+    <section className="mt-20 xl:mt-28">
       <FormContainer className="shadow-xl">
         <FormHeader>Login</FormHeader>
         <form onSubmit={(e) => onSubmitHandler(e)}>
