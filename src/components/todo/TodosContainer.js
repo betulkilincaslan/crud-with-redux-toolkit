@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
-import TodoItem from "./TodosContainer";
+import TodoItem from "./TodoItem";
 import UpdateTodoModal from "./updateTodo/UpdateTodoModal";
 import DeleteTodoModal from "./deleteTodo/DeleteTodoModal";
 import SearchContainer from "components/search/SearchContainer";
 import { useSelector } from "react-redux";
 import { sortTodosByIdDescending } from "redux/todos/todosSlice";
+import Pagination from "components/common/Pagination";
 
 const TodosContainer = ({ todos }) => {
   const sortedTodos = useSelector(sortTodosByIdDescending);
@@ -14,21 +15,47 @@ const TodosContainer = ({ todos }) => {
   const [deletedTodoItem, setDeletedTodoItem] = useState({});
   const [showDeleteTodoModal, setShowDeleteTodoModal] = useState(false);
 
+  const [filteredTodos, setFilteredTodos] = useState([]);
   const [searchField, setSearchField] = useState("");
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const [todosPerPage] = useState(20);
+  const pageNumbers = [];
+  const [currentButton, setCurrentButton] = useState(1);
+
+  // get current page todos
+  const indexOfLastTodo = currentPage * todosPerPage;
+  const indexOfFirstTodo = indexOfLastTodo - todosPerPage;
+  // get total page number
+  const totalTodos =
+    filteredTodos.length > 0 ? filteredTodos.length : sortedTodos.length;
+  const totalPageNumber = Math.ceil(totalTodos / todosPerPage);
+  // get current todos
+  const currentTodos =
+    filteredTodos.length > 0
+      ? filteredTodos.slice(indexOfFirstTodo, indexOfLastTodo)
+      : sortedTodos.slice(indexOfFirstTodo, indexOfLastTodo);
+
+  for (let i = 1; i <= totalPageNumber; i++) {
+    pageNumbers.push(i);
+  }
 
   const onSearchInputChangeHandler = (e) => {
     setSearchField(e.target.value);
+    currentPage !== 1 && setCurrentPage(1);
   };
 
-  const [filteredTodos, setFilteredTodos] = useState([]);
-
   useEffect(() => {
-    let filteredTodos = sortedTodos.filter(
-      (todo) =>
-        todo.title.match(new RegExp(searchField, "i")) ||
-        todo.userId.toString().match(new RegExp(searchField, "i"))
-    );
-    setFilteredTodos(filteredTodos);
+    const filterTodos = () => {
+      const filteredTodos = sortedTodos.filter(
+        (todo) =>
+          todo.title.match(new RegExp(searchField, "i")) ||
+          todo.userId.toString().match(new RegExp(searchField, "i"))
+      );
+      return filteredTodos;
+    };
+
+    setFilteredTodos(filterTodos);
   }, [searchField, sortedTodos]);
 
   const updateTodoHandler = (id) => {
@@ -40,7 +67,6 @@ const TodosContainer = ({ todos }) => {
   const deleteTodoHandler = (id) => {
     const deletedItem = todos.filter((todo) => todo.id === id);
     setDeletedTodoItem(deletedItem);
-
     setShowDeleteTodoModal(true);
   };
 
@@ -59,38 +85,39 @@ const TodosContainer = ({ todos }) => {
         />
       )}
 
-      <section className="py-4 text-center w-full min-h-max">
-        <div className="grid grid-cols-1 bg-wetAsphalt">
-          <div className="px-2">
-            <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
-              <div className="inline-block min-w-full sm:px-6 lg:px-8">
-                <div className="overflow-x-auto">
-                  <SearchContainer
-                    onSearchInputChangeHandler={onSearchInputChangeHandler}
-                    searchField={searchField}
-                  />
-                  <div className="md:grid grid-cols-10 gap-2 hidden">
-                    <div>userId</div>
-                    <div className="col-span-6 text-left">Title</div>
-                    <div>Completed</div>
-                    <div>Edit</div>
-                    <div>Delete</div>
-                  </div>
+      <section className="grid grid-cols-1 bg-wetAsphalt rounded-tl-xl rounded-br-xl text-center">
+        <SearchContainer
+          onSearchInputChangeHandler={onSearchInputChangeHandler}
+          searchField={searchField}
+        />
+        <div className="md:grid grid-cols-10 gap-2 hidden pb-4 font-semibold px-2">
+          <div>userId</div>
+          <div className="col-span-6 text-left">Title</div>
+          <div>Completed</div>
+          <div>Edit</div>
+          <div>Delete</div>
+        </div>
 
-                  {filteredTodos.map((todo) => (
-                    <TodoItem
-                      key={todo.id}
-                      todo={todo}
-                      updateTodoHandler={updateTodoHandler}
-                      deleteTodoHandler={deleteTodoHandler}
-                    />
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
+        <div className="min-h-[70vh]">
+          {currentTodos.map((todo) => (
+            <TodoItem
+              key={todo.id}
+              todo={todo}
+              updateTodoHandler={updateTodoHandler}
+              deleteTodoHandler={deleteTodoHandler}
+            />
+          ))}
         </div>
       </section>
+
+      <div className="flex items-center justify-center my-4">
+        <Pagination
+          pageNumbers={pageNumbers}
+          setCurrentPage={setCurrentPage}
+          currentButton={currentButton}
+          setCurrentButton={setCurrentButton}
+        />
+      </div>
     </>
   );
 };
