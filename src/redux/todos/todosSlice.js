@@ -41,6 +41,17 @@ export const updateTodosAsync = createAsyncThunk(
   }
 );
 
+export const toggleCompletedAsync = createAsyncThunk(
+  "todos/updateTodosAsync",
+  async ({ id, todoData }) => {
+    const { data } = await axios.patch(
+      `${process.env.REACT_APP_API_BASE_URL}/todos/${id}`,
+      todoData
+    );
+    return data;
+  }
+);
+
 export const todosSlice = createSlice({
   name: "todos",
   initialState: {
@@ -52,13 +63,7 @@ export const todosSlice = createSlice({
       error: false,
     },
   },
-  reducers: {
-    toggleCompleted: (state, action) => {
-      const { id } = action.payload;
-      const index = state.todoItems.findIndex((todo) => todo.id === id);
-      state.todoItems[index].completed = !state.todoItems[index].completed;
-    },
-  },
+  reducers: {},
   extraReducers: {
     // get todos
     [getTodosAsync.pending]: (state, action) => {
@@ -98,6 +103,12 @@ export const todosSlice = createSlice({
       const index = state.todoItems.findIndex((todoItem) => todoItem.id === id);
       state.todoItems[index] = action.payload;
     },
+    // toggle completed
+    [toggleCompletedAsync.fulfilled]: (state, action) => {
+      const { id, completed } = action.payload;
+      const index = state.todoItems.findIndex((todo) => todo.id === id);
+      state.todoItems[index].completed = completed;
+    },
   },
 });
 
@@ -107,5 +118,4 @@ export const sortTodosByIdDescending = (state) => {
   return todosArr.sort((a, b) => (b.id > a.id ? 1 : -1));
 };
 
-export const { toggleCompleted } = todosSlice.actions;
 export default todosSlice.reducer;

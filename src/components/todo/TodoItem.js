@@ -1,13 +1,13 @@
 import { useDispatch } from "react-redux";
-import { toggleCompleted } from "redux/todos/todosSlice";
+import { toggleCompletedAsync } from "redux/todos/todosSlice";
 
 const TodoItem = ({ todo, updateTodoHandler, deleteTodoHandler }) => {
   const { userId, id, title, completed } = todo;
 
   const dispatch = useDispatch();
 
-  const changeCompletedHandler = () => {
-    dispatch(toggleCompleted({ id }));
+  const changeCompletedHandler = async (id, completed) => {
+    await dispatch(toggleCompletedAsync({ id, todoData: { completed } }));
   };
 
   return (
@@ -17,9 +17,9 @@ const TodoItem = ({ todo, updateTodoHandler, deleteTodoHandler }) => {
       <div>
         <input
           type="checkbox"
-          className="accent-belizeHole md:accent-peterRiver cursor-pointer w-4 h-4"
+          className="accent-belizeHole md:accent-peterRiver cursor-pointer w-4 h-4 ml-2   focus:ring-belizeHole ring-offset-asbestos focus:ring-2 bg-asbestos border-concrete"
           checked={completed}
-          onChange={() => changeCompletedHandler()}
+          onChange={() => changeCompletedHandler(id, !completed)}
         />
       </div>
       <div>
