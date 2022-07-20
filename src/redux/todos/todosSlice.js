@@ -42,7 +42,7 @@ export const updateTodosAsync = createAsyncThunk(
 );
 
 export const toggleCompletedAsync = createAsyncThunk(
-  "todos/updateTodosAsync",
+  "todos/toggleCompletedAsync",
   async ({ id, todoData }) => {
     const { data } = await axios.patch(
       `${process.env.REACT_APP_API_BASE_URL}/todos/${id}`,
@@ -99,6 +99,7 @@ export const todosSlice = createSlice({
     },
     // update todo
     [updateTodosAsync.fulfilled]: (state, action) => {
+      console.log(action.payload);
       const id = action.payload.id;
       const index = state.todoItems.findIndex((todoItem) => todoItem.id === id);
       state.todoItems[index] = action.payload;
