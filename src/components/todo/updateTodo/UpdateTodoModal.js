@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-import FormButton from "components/common/form/FormButton";
 import FormContainer from "components/common/form/FormContainer";
 import FormHeader from "components/common/form/FormHeader";
-import FormInput from "components/common/form/FormInput";
+import Input from "components/common/input/Input";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import { updateTodosAsync } from "redux/todos/todosSlice";
-import ModalContainer from "components/common/modal/ModalContainer";
+import Modal from "components/common/modal/Modal";
+import Button from "components/common/button/Button";
 
 const UpdateTodoModal = ({ updatedTodoItem, setShowUpdateTodoModal }) => {
   const dispatch = useDispatch();
@@ -50,42 +50,44 @@ const UpdateTodoModal = ({ updatedTodoItem, setShowUpdateTodoModal }) => {
   };
 
   return (
-    <ModalContainer onClose={closeModalHandler}>
+    <Modal onClose={closeModalHandler}>
       <FormContainer>
         <FormHeader> Update Todo with id: {id} </FormHeader>
 
         <form onSubmit={(e) => onFormSubmitHandler(e)}>
-          <FormInput
+          <Input
             type="number"
             min="1"
             name="userId"
             placeholder="userId"
             value={updatedUserId}
             onChange={(e) => setUpdatedUserId(e.target.value)}
-          ></FormInput>
-          <FormInput
+          ></Input>
+          <Input
             type="text"
             name="title"
             placeholder="title"
             value={updatedTodoTitle}
             onChange={(e) => setUpdatedTodoTitle(e.target.value)}
-          ></FormInput>
+          ></Input>
 
           <div className="flex mb-3">
             <input
               type="checkbox"
-              className="accent-belizeHole md:accent-peterRiver cursor-pointer w-4 h-4 ml-2"
+              className="accent-belizeHole md:accent-peterRiver cursor-pointer w-4 h-4 ml-2   focus:ring-belizeHole ring-offset-asbestos focus:ring-2 bg-asbestos border-concrete"
               checked={updatedTodoCompleted}
               onChange={() => setUpdatedTodoCompleted(!updatedTodoCompleted)}
             />
           </div>
 
           <div>
-            <FormButton type="submit">Update Todo</FormButton>
+            <Button type="submit" color="bg-belizeHole hover:bg-peterRiver">
+              Update Todo
+            </Button>
           </div>
         </form>
       </FormContainer>
-    </ModalContainer>
+    </Modal>
   );
 };
 

@@ -1,15 +1,15 @@
-import FormInput from "components/common/form/FormInput";
+import Input from "components/common/input/Input";
 
 const SearchContainer = ({ onSearchInputChangeHandler, searchField }) => {
   return (
     <div className="py-4 mx-4">
-      <FormInput
+      <Input
         placeholder="Search Todo"
         type="text"
         name="searchField"
         value={searchField}
         onChange={(e) => onSearchInputChangeHandler(e)}
-      ></FormInput>
+      ></Input>
     </div>
   );
 };

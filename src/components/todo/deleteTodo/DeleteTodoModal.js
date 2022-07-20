@@ -1,4 +1,4 @@
-import ModalContainer from "components/common/modal/ModalContainer";
+import Modal from "components/common/modal/Modal";
 import FormHeader from "components/common/form/FormHeader";
 import { toast } from "react-toastify";
 import { deleteTodosAsync } from "redux/todos/todosSlice";
@@ -18,13 +18,13 @@ const DeleteTodoModal = ({ setShowDeleteTodoModal, deletedTodoItem }) => {
     setShowDeleteTodoModal(false);
   };
   return (
-    <ModalContainer
+    <Modal
       type="confirm"
       onClose={closeModalHandler}
       onConfirm={confirmDeleteTodoHandler}
     >
       <FormHeader> Are you sure you want to delete? </FormHeader>
-    </ModalContainer>
+    </Modal>
   );
 };
 

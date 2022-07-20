@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import FormButton from "components/common/form/FormButton";
 import FormContainer from "components/common/form/FormContainer";
 import FormHeader from "components/common/form/FormHeader";
-import FormInput from "components/common/form/FormInput";
+import Input from "components/common/input/Input";
 import { useDispatch } from "react-redux";
 import { addTodosAsync } from "redux/todos/todosSlice";
 import { toast } from "react-toastify";
-import ModalContainer from "components/common/modal/ModalContainer";
+import Modal from "components/common/modal/Modal";
+import Button from "components/common/button/Button";
 
 const AddTodoModal = ({ setShowAddTodoModal }) => {
   const dispatch = useDispatch();
@@ -50,33 +50,35 @@ const AddTodoModal = ({ setShowAddTodoModal }) => {
   };
 
   return (
-    <ModalContainer onClose={closeModalHandler}>
+    <Modal onClose={closeModalHandler}>
       <FormContainer>
         <FormHeader>Add Todo</FormHeader>
 
         <form onSubmit={(e) => onFormSubmitHandler(e)}>
-          <FormInput
+          <Input
             type="number"
             min="1"
             name="userId"
             placeholder="userId"
             value={userId}
             onChange={(e) => onInputChangeHandler(e)}
-          ></FormInput>
-          <FormInput
+          ></Input>
+          <Input
             type="text"
             name="title"
             placeholder="title"
             value={title}
             onChange={(e) => onInputChangeHandler(e)}
-          ></FormInput>
+          ></Input>
 
           <div>
-            <FormButton type="submit">Add Todo</FormButton>
+            <Button type="submit" color="bg-belizeHole hover:bg-peterRiver">
+              Add Todo
+            </Button>
           </div>
         </form>
       </FormContainer>
-    </ModalContainer>
+    </Modal>
   );
 };
 
