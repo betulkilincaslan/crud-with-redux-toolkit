@@ -13,9 +13,6 @@ module.exports = {
         midnightBlue: "#2c3e50",
         wetAsphalt: "#34495e",
 
-        emerald: "#2ecc71",
-        nephritis: "#27ae60",
-
         peterRiver: "#3498db",
         belizeHole: "#2980b9",
 
