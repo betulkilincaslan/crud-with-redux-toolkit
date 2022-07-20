@@ -40,7 +40,7 @@ const UpdateTodoModal = ({ updatedTodoItem, setShowUpdateTodoModal }) => {
 
     await dispatch(updateTodosAsync(updatedTodoData));
 
-    toast.success("Todo added successfully!");
+    toast.success("Todo updated successfully!");
 
     setShowUpdateTodoModal(false);
   };
