@@ -1,4 +1,4 @@
-const FormInput = ({ placeholder, type, name, value, onChange, min }) => {
+const Input = ({ placeholder, type, name, value, onChange, min }) => {
   return (
     <div className="relative">
       <input
@@ -21,4 +21,4 @@ const FormInput = ({ placeholder, type, name, value, onChange, min }) => {
   );
 };
 
-export default FormInput;
+export default Input;
