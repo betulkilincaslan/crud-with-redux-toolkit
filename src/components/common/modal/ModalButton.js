@@ -1,8 +1,8 @@
-const ModalButton = ({ children, type, onClick, className }) => {
+const ModalButton = ({ children, type, onClick, color }) => {
   return (
     <button
       className={`background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none transition-all duration-150 ${
-        className && className
+        color && color
       }`}
       type={type || "button"}
       onClick={onClick}
