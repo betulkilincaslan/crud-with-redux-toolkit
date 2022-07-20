@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import FormButton from "components/common/form/FormButton";
 import FormContainer from "components/common/form/FormContainer";
 import FormHeader from "components/common/form/FormHeader";
-import FormInput from "components/common/form/FormInput";
 import { useSelector, useDispatch } from "react-redux";
 import { getUsersAsync, usersLoginData } from "redux/users/usersSlice";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import Button from "components/common/button/Button";
+import Input from "components/common/input/Input";
 
 const LoginScreen = () => {
   const dispatch = useDispatch();
@@ -47,26 +47,28 @@ const LoginScreen = () => {
   };
 
   return (
-    <section className="py-12 w-full min-h-max">
-      <FormContainer>
+    <section className="md:mt-64 mt-52">
+      <FormContainer className="shadow-xl">
         <FormHeader>Login</FormHeader>
         <form onSubmit={(e) => onSubmitHandler(e)}>
-          <FormInput
+          <Input
             placeholder="Username"
             type="text"
             name="username"
             value={username}
             onChange={(e) => onInputChangeHandler(e)}
-          ></FormInput>
-          <FormInput
+          ></Input>
+          <Input
             placeholder="Password"
             type="password"
             name="password"
             value={password}
             onChange={(e) => onInputChangeHandler(e)}
-          ></FormInput>
+          ></Input>
           <div>
-            <FormButton type="submit">Login</FormButton>
+            <Button type="submit" color="bg-belizeHole hover:bg-peterRiver">
+              Login
+            </Button>
           </div>
         </form>
       </FormContainer>
