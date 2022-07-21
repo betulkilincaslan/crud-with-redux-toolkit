@@ -1,6 +1,6 @@
 const FormHeader = ({ children }) => {
   return (
-    <h1 className="text-center font-semibold mb-3 tracking-wide text-lightBlueBallerina">
+    <h1 className="text-center font-semibold mb-3 tracking-wide text-clouds">
       {children}
     </h1>
   );

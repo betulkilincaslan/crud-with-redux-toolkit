@@ -10,10 +10,11 @@ const Input = ({ placeholder, type, name, value, onChange, min }) => {
         onChange={onChange}
         min={min || null}
         placeholder=" "
+        required
       />
       <label
         htmlFor={name}
-        className="absolute text-sm text-clouds dark:text-clouds duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] left-2.5 peer-focus:text-belizeHole peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4"
+        className="absolute text-sm text-concrete duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] left-2.5 peer-focus:text-belizeHole peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4"
       >
         {placeholder}
       </label>

@@ -11,7 +11,7 @@ const TodoItem = ({ todo, updateTodoHandler, deleteTodoHandler }) => {
   };
 
   return (
-    <div className="grid grid-cols-10 gap-2 my-2">
+    <div className="grid grid-cols-10 gap-2 py-2 mx-2 hover:bg-midnightBlue rounded-md">
       <div>{userId}</div>
       <div className="col-span-6 text-left">{title}</div>
       <div>
@@ -24,12 +24,12 @@ const TodoItem = ({ todo, updateTodoHandler, deleteTodoHandler }) => {
       </div>
       <div>
         <span onClick={() => updateTodoHandler(id)}>
-          <i className="bx bx-edit-alt text-belizeHole hover:text-peterRiver text-2xl cursor-pointer"></i>
+          <i className="bx bx-edit-alt text-peterRiver hover:text-belizeHole text-2xl cursor-pointer"></i>
         </span>
       </div>
       <div>
         <span onClick={() => deleteTodoHandler(id)}>
-          <i className="bx bx-trash text-pumpkin hover:text-carrot text-2xl cursor-pointer"></i>
+          <i className="bx bx-trash text-clouds hover:text-silver text-2xl cursor-pointer"></i>
         </span>
       </div>
     </div>

@@ -24,7 +24,7 @@ const ScrollToTopButton = () => {
 
   return (
     <button
-      className={`bg-peterRiver hover:bg-belizeHole border-none rounded-full cursor-pointer w-8 h-8 fixed bottom-8 md:right-12 right-8 transition-all duration-200 ${
+      className={`bg-peterRiver hover:bg-belizeHole border-none rounded-full cursor-pointer w-8 h-8 fixed bottom-8 md:right-12 right-8 transition-all duration-200 hover:scale-110 focus:scale-90 ${
         showScrollToTop ? "initial" : "hidden"
       }`}
       onClick={scrollTop}

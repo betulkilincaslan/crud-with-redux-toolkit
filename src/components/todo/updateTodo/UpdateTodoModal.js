@@ -52,21 +52,19 @@ const UpdateTodoModal = ({ updatedTodoItem, setShowUpdateTodoModal }) => {
   return (
     <Modal onClose={closeModalHandler}>
       <FormContainer>
-        <FormHeader> Update Todo with id: {id} </FormHeader>
-
         <form onSubmit={(e) => onFormSubmitHandler(e)}>
           <Input
             type="number"
             min="1"
             name="userId"
-            placeholder="userId"
+            placeholder="Your user id"
             value={updatedUserId}
             onChange={(e) => setUpdatedUserId(e.target.value)}
           ></Input>
           <Input
             type="text"
             name="title"
-            placeholder="title"
+            placeholder="Your todo"
             value={updatedTodoTitle}
             onChange={(e) => setUpdatedTodoTitle(e.target.value)}
           ></Input>

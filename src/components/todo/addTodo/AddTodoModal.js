@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import FormContainer from "components/common/form/FormContainer";
-import FormHeader from "components/common/form/FormHeader";
 import Input from "components/common/input/Input";
 import { useDispatch } from "react-redux";
 import { addTodosAsync } from "redux/todos/todosSlice";
@@ -52,21 +51,19 @@ const AddTodoModal = ({ setShowAddTodoModal }) => {
   return (
     <Modal onClose={closeModalHandler}>
       <FormContainer>
-        <FormHeader>Add Todo</FormHeader>
-
         <form onSubmit={(e) => onFormSubmitHandler(e)}>
           <Input
             type="number"
             min="1"
             name="userId"
-            placeholder="userId"
+            placeholder="Please enter your user id"
             value={userId}
             onChange={(e) => onInputChangeHandler(e)}
           ></Input>
           <Input
             type="text"
             name="title"
-            placeholder="title"
+            placeholder="Please enter your todo"
             value={title}
             onChange={(e) => onInputChangeHandler(e)}
           ></Input>

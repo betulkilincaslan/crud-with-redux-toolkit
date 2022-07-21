@@ -7,14 +7,17 @@ const AddTodoContainer = () => {
 
   return (
     <>
-      <div className="mb-4 flex w-36 ml-auto">
-        <Button
-          type="button"
-          onClick={() => setShowAddTodoModal(true)}
-          color="bg-belizeHole hover:bg-peterRiver"
-        >
-          Add Todo
-        </Button>
+      <div className="mb-4 flex items-center justify-between">
+        <h1 className="font-semibold tracking-wide text-clouds">Todo App</h1>
+        <div className="w-36">
+          <Button
+            type="button"
+            onClick={() => setShowAddTodoModal(true)}
+            color="bg-belizeHole hover:bg-peterRiver"
+          >
+            Add Todo
+          </Button>
+        </div>
       </div>
 
       {showAddTodoModal ? (
