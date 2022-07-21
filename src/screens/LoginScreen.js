@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import Button from "components/common/button/Button";
 import Input from "components/common/input/Input";
+import { v4 as uuidv4 } from "uuid";
 
 const LoginScreen = () => {
   const dispatch = useDispatch();
@@ -38,7 +39,7 @@ const LoginScreen = () => {
     );
 
     if (isMatchLoginData) {
-      let token = Math.random();
+      let token = uuidv4();
       localStorage.setItem("token", token);
       navigate(`/todos`);
     } else {
