@@ -26,77 +26,46 @@ const Pagination = ({
   };
 
   return (
-    <nav>
-      <ul className="inline-flex items-center -space-x-px shadow-lg">
-        <li>
-          <button
-            disabled={currentButton === 1}
-            className={`${
-              currentButton === 1
-                ? "bg-asbestos"
-                : "block py-2 px-3 ml-0 leading-tight rounded-tl-xl border bg-midnightBlue border-wetAsphalt text-concrete hover:bg-wetAsphalt hover:text-clouds"
-            }`}
-            onClick={(e) => clickPrevHandler(e)}
-          >
-            <span className="sr-only">Previous</span>
-            <svg
-              aria-hidden="true"
-              className="w-5 h-5"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                fillRule="evenodd"
-                d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
-                clipRule="evenodd"
-              ></path>
-            </svg>
-          </button>
-        </li>
+    <nav className="flex items-center sm:inline-flex sm:-space-x-px sm:shadow-lg">
+      <button
+        disabled={currentButton === 1}
+        className={`border-none outline-none bg-transparent mr-1 sm:block sm:py-2 sm:px-3 sm:ml-0 sm:rounded-tl-xl sm:border  sm:border-wetAsphalt sm:text-concrete ${
+          currentButton === 1
+            ? "text-asbestos sm:bg-wetAsphalt"
+            : "text-silver hover:text-clouds sm:hover:bg-wetAsphalt sm:bg-midnightBlue"
+        }`}
+        onClick={(e) => clickPrevHandler(e)}
+      >
+        <i className="bx bx-chevron-left text-2xl"></i>
+      </button>
+      <ul className="grid grid-cols-5 gap-2 sm:flex sm:items-center sm:gap-0">
         {pageNumbers.map((pageNumber) => (
           <li key={pageNumber}>
             <a
               onClick={(e) => clickPaginationHandler(e, pageNumber)}
               href="#!"
-              className={`${
+              className={`py-2 px-3 w-10 h-10 sm:w-12 sm:h-12 leading-tight border inline-flex items-center justify-center border-midnightBlue ${
                 currentButton === pageNumber
-                  ? "z-10 py-2 px-3 leading-tight border border-midnightBlue bg-midnightBlue text-clouds"
-                  : "py-2 px-3 leading-tight border bg-wetAsphalt border-midnightBlue text-concrete hover:bg-midnightBlue hover:text-clouds"
+                  ? "bg-midnightBlue text-clouds"
+                  : "bg-wetAsphalt hover:bg-midnightBlue hover:text-clouds text-concrete"
               }`}
             >
               {pageNumber}
             </a>
           </li>
         ))}
-
-        <li>
-          <a
-            href="#!"
-            className={`${
-              currentButton === pageNumbers.length
-                ? "bg-asbestos"
-                : "block py-2 px-3 ml-0 leading-tight rounded-br-xl border bg-midnightBlue border-wetAsphalt text-concrete hover:bg-wetAsphalt hover:text-clouds"
-            }`}
-            onClick={(e) => clickNextHandler(e)}
-          >
-            <span className="sr-only">Next</span>
-            <svg
-              aria-hidden="true"
-              className="w-5 h-5"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                fillRule="evenodd"
-                d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                clipRule="evenodd"
-              ></path>
-            </svg>
-          </a>
-        </li>
       </ul>
+      <button
+        disabled={currentButton === pageNumbers.length}
+        className={`border-none outline-none bg-transparent mr-1 sm:block sm:py-2 sm:px-3 sm:ml-0 sm:rounded-br-xl sm:border  sm:border-wetAsphalt sm:text-concrete ${
+          currentButton === pageNumbers.length
+            ? "text-asbestos sm:bg-wetAsphalt"
+            : "text-silver hover:text-clouds sm:hover:bg-wetAsphalt sm:bg-midnightBlue"
+        }`}
+        onClick={(e) => clickNextHandler(e)}
+      >
+        <i className="bx bx-chevron-right text-2xl"></i>
+      </button>
     </nav>
   );
 };
