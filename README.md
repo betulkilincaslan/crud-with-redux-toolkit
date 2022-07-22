@@ -1,21 +1,26 @@
 # CRUD App with React-Redux Toolkit
 
-## Live Demo:
+## Live Demo: [https://crud-app-with-react-redux.herokuapp.com/](https://crud-app-with-react-redux.herokuapp.com/)
 
 ## Technologies I Used:
 
--- Redux Toolkit
--- Tailwind CSS
--- React Router DOM
--- Axios
--- React Toastify
--- uuid
--- Box Icons
--- JSONPlaceholder
+- Redux Toolkit
+- Tailwind CSS
+- React Router DOM
+- Axios
+- React Toastify
+- uuid
+- Box Icons
+- JSONPlaceholder
 
 ### Sources:
 
 Colors: [https://flatuicolors.com/palette/defo](https://flatuicolors.com/palette/defo)
+
+### NOTE:
+
+- You can use username: Bret ; password: 1-770-736-8031 x56442
+- You can also use [https://jsonplaceholder.typicode.com/users](https://jsonplaceholder.typicode.com/users) endpoint for username and password. For username, "username" field; for password, "phone" field can be used.
 
 # Getting Started with Create React App
 
