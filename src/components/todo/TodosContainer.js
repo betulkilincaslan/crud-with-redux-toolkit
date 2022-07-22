@@ -2,27 +2,25 @@ import React, { useEffect, useState } from "react";
 import TodoItem from "./TodoItem";
 import UpdateTodoModal from "./updateTodo/UpdateTodoModal";
 import DeleteTodoModal from "./deleteTodo/DeleteTodoModal";
-import SearchContainer from "components/search/SearchContainer";
 import { useSelector } from "react-redux";
 import { sortTodosByIdDescending } from "redux/todos/todosSlice";
 import Pagination from "components/common/Pagination";
+import Input from "components/common/input/Input";
 
 const TodosContainer = ({ todos }) => {
   const sortedTodos = useSelector(sortTodosByIdDescending);
   const [updatedTodoItem, setUpdatedTodoItem] = useState({});
   const [showUpdateTodoModal, setShowUpdateTodoModal] = useState(false);
-
   const [deletedTodoItem, setDeletedTodoItem] = useState({});
   const [showDeleteTodoModal, setShowDeleteTodoModal] = useState(false);
-
   const [filteredTodos, setFilteredTodos] = useState([]);
   const [searchField, setSearchField] = useState("");
-
   const [currentPage, setCurrentPage] = useState(1);
   const [todosPerPage] = useState(20);
   const pageNumbers = [];
   const [currentButton, setCurrentButton] = useState(1);
 
+  // PAGINATION
   // get current page todos
   const indexOfLastTodo = currentPage * todosPerPage;
   const indexOfFirstTodo = indexOfLastTodo - todosPerPage;
@@ -40,17 +38,23 @@ const TodosContainer = ({ todos }) => {
     pageNumbers.push(i);
   }
 
+  // SEARCH
   const onSearchInputChangeHandler = (e) => {
     setSearchField(e.target.value);
     currentPage !== 1 && setCurrentPage(1);
+  };
+
+  const onFormSubmitHandler = (e) => {
+    e.preventDefault();
+    setSearchField("");
   };
 
   useEffect(() => {
     const filterTodos = () => {
       const filteredTodos = sortedTodos.filter(
         (todo) =>
-          todo.title.match(new RegExp(searchField, "i")) ||
-          todo.userId.toString().match(new RegExp(searchField, "i"))
+          todo.title.toLocaleLowerCase().includes(searchField) ||
+          todo.userId.toString().includes(searchField)
       );
       return filteredTodos;
     };
@@ -86,38 +90,54 @@ const TodosContainer = ({ todos }) => {
       )}
 
       <section className="grid grid-cols-1 bg-wetAsphalt rounded-tl-xl rounded-br-xl text-center">
-        <SearchContainer
-          onSearchInputChangeHandler={onSearchInputChangeHandler}
-          searchField={searchField}
-        />
+        <form onSubmit={(e) => onFormSubmitHandler(e)}>
+          <div className="py-4 mx-4">
+            <Input
+              placeholder="Search Todo"
+              type="text"
+              name="searchField"
+              value={searchField}
+              onChange={(e) => onSearchInputChangeHandler(e)}
+            ></Input>
+          </div>
+        </form>
+
         <div className="md:grid grid-cols-10 gap-2 hidden pb-4 font-semibold px-2">
-          <div>userId</div>
+          <div>User ID</div>
           <div className="col-span-6 text-left">Title</div>
           <div>Completed</div>
           <div>Edit</div>
           <div>Delete</div>
         </div>
 
-        <div className="min-h-[70vh]">
-          {currentTodos.map((todo) => (
-            <TodoItem
-              key={todo.id}
-              todo={todo}
-              updateTodoHandler={updateTodoHandler}
-              deleteTodoHandler={deleteTodoHandler}
-            />
-          ))}
+        <div className="min-h-[600px]">
+          {filteredTodos.length === 0 ? (
+            <p className="text-center font-semibold mb-3 tracking-wide text-pumpkin text-xl py-8 px-4">
+              There is no todo with that title!
+            </p>
+          ) : (
+            currentTodos.map((todo) => (
+              <TodoItem
+                key={todo.title}
+                todo={todo}
+                updateTodoHandler={updateTodoHandler}
+                deleteTodoHandler={deleteTodoHandler}
+              />
+            ))
+          )}
         </div>
       </section>
 
-      <div className="flex items-center justify-center my-4">
-        <Pagination
-          pageNumbers={pageNumbers}
-          setCurrentPage={setCurrentPage}
-          currentButton={currentButton}
-          setCurrentButton={setCurrentButton}
-        />
-      </div>
+      {filteredTodos.length > 0 && (
+        <div className="flex items-center justify-center my-4">
+          <Pagination
+            pageNumbers={pageNumbers}
+            setCurrentPage={setCurrentPage}
+            currentButton={currentButton}
+            setCurrentButton={setCurrentButton}
+          />
+        </div>
+      )}
     </>
   );
 };
