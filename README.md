@@ -1,3 +1,22 @@
+# CRUD App with React-Redux Toolkit
+
+## Live Demo:
+
+## Technologies I Used:
+
+-- Redux Toolkit
+-- Tailwind CSS
+-- React Router DOM
+-- Axios
+-- React Toastify
+-- uuid
+-- Box Icons
+-- JSONPlaceholder
+
+### Sources:
+
+Colors: [https://flatuicolors.com/palette/defo](https://flatuicolors.com/palette/defo)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
