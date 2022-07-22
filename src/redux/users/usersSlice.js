@@ -38,10 +38,10 @@ export const usersLoginData = (state) => {
   return state.users.userItems.map((user) => {
     let username = user.username;
     let password = user.phone;
-    let loginData = { username, password };
+    let userId = user.id;
+    let loginData = { username, password, userId };
 
     return loginData;
   });
 };
-
 export default usersSlice.reducer;

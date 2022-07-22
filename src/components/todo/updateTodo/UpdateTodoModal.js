@@ -12,13 +12,11 @@ const UpdateTodoModal = ({ updatedTodoItem, setShowUpdateTodoModal }) => {
   const dispatch = useDispatch();
 
   const { userId, id, title, completed } = updatedTodoItem[0];
-  const [updatedUserId, setUpdatedUserId] = useState("");
   const [updatedTodoTitle, setUpdatedTodoTitle] = useState("");
   const [updatedTodoCompleted, setUpdatedTodoCompleted] = useState(completed);
 
   useEffect(() => {
     if (updatedTodoItem.length > 0) {
-      setUpdatedUserId(userId);
       setUpdatedTodoTitle(title);
       setUpdatedTodoCompleted(completed);
     }
@@ -27,12 +25,12 @@ const UpdateTodoModal = ({ updatedTodoItem, setShowUpdateTodoModal }) => {
   const onFormSubmitHandler = async (e) => {
     e.preventDefault();
 
-    if (!updatedUserId || !updatedTodoTitle) {
+    if (!updatedTodoTitle) {
       return toast.warning("Please fill in all fields!");
     }
 
     const updatedTodoData = {
-      userId: updatedUserId,
+      userId,
       id,
       title: updatedTodoTitle,
       completed: updatedTodoCompleted,
@@ -54,14 +52,6 @@ const UpdateTodoModal = ({ updatedTodoItem, setShowUpdateTodoModal }) => {
       <FormContainer>
         <form onSubmit={(e) => onFormSubmitHandler(e)}>
           <Input
-            type="number"
-            min="1"
-            name="userId"
-            placeholder="Your user id"
-            value={updatedUserId}
-            onChange={(e) => setUpdatedUserId(e.target.value)}
-          ></Input>
-          <Input
             type="text"
             name="title"
             placeholder="Your todo"
@@ -69,10 +59,12 @@ const UpdateTodoModal = ({ updatedTodoItem, setShowUpdateTodoModal }) => {
             onChange={(e) => setUpdatedTodoTitle(e.target.value)}
           ></Input>
 
-          <div className="flex mb-3">
+          <div className="flex mb-3 items-center text-sm">
+            <label htmlFor="completed">Completed:</label>
             <input
               type="checkbox"
-              className="accent-belizeHole md:accent-peterRiver cursor-pointer w-4 h-4 ml-2   focus:ring-belizeHole ring-offset-asbestos focus:ring-2 bg-asbestos border-concrete"
+              name="completed"
+              className="accent-asbestos cursor-pointer w-4 h-4 ml-2   focus:ring-concrete ring-offset-asbestos focus:ring-2 bg-asbestos border-concrete"
               checked={updatedTodoCompleted}
               onChange={() => setUpdatedTodoCompleted(!updatedTodoCompleted)}
             />

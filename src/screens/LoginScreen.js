@@ -34,13 +34,17 @@ const LoginScreen = () => {
   const onSubmitHandler = (e) => {
     e.preventDefault();
 
-    const isMatchLoginData = loginDataforUsers.some(
+    const matchedLoginData = loginDataforUsers.filter(
       (data) => data.username === username && data.password === password
     );
 
-    if (isMatchLoginData) {
-      let token = uuidv4();
+    if (matchedLoginData.length > 0) {
+      const token = uuidv4();
+      const userId = matchedLoginData[0].userId;
+
       localStorage.setItem("token", token);
+      localStorage.setItem("userId", userId);
+
       navigate(`/todos`);
     } else {
       toast.warning("Username or password is wrong!");

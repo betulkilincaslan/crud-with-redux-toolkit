@@ -11,11 +11,10 @@ const AddTodoModal = ({ setShowAddTodoModal }) => {
   const dispatch = useDispatch();
 
   const [todoFields, setTodoFields] = useState({
-    userId: "",
     title: "",
     completed: false,
   });
-  const { userId, title, completed } = todoFields;
+  const { title, completed } = todoFields;
 
   const onInputChangeHandler = (e) => {
     setTodoFields({
@@ -26,8 +25,9 @@ const AddTodoModal = ({ setShowAddTodoModal }) => {
 
   const onFormSubmitHandler = async (e) => {
     e.preventDefault();
+    const userId = parseInt(localStorage.getItem("userId"));
 
-    if (!userId || !title) {
+    if (!title) {
       return toast.warning("Please fill in all fields!");
     }
 
@@ -36,7 +36,6 @@ const AddTodoModal = ({ setShowAddTodoModal }) => {
       title,
       completed,
     };
-
     await dispatch(addTodosAsync(newTodoData));
 
     toast.success("Todo added successfully!");
@@ -52,14 +51,6 @@ const AddTodoModal = ({ setShowAddTodoModal }) => {
     <Modal onClose={closeModalHandler}>
       <FormContainer>
         <form onSubmit={(e) => onFormSubmitHandler(e)}>
-          <Input
-            type="number"
-            min="1"
-            name="userId"
-            placeholder="Please enter your user id"
-            value={userId}
-            onChange={(e) => onInputChangeHandler(e)}
-          ></Input>
           <Input
             type="text"
             name="title"
