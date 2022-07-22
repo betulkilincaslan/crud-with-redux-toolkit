@@ -17,7 +17,7 @@ const TodoItem = ({ todo, updateTodoHandler, deleteTodoHandler }) => {
       <div>
         <input
           type="checkbox"
-          className="accent-belizeHole md:accent-peterRiver cursor-pointer w-4 h-4 ml-2   focus:ring-belizeHole ring-offset-asbestos focus:ring-2 bg-asbestos border-concrete"
+          className="accent-asbestos cursor-pointer w-4 h-4 ml-2   focus:ring-concrete ring-offset-asbestos focus:ring-2 bg-asbestos border-concrete"
           checked={completed}
           onChange={() => changeCompletedHandler(id, !completed)}
         />
