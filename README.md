@@ -1,6 +1,8 @@
 # CRUD App with React-Redux Toolkit
 
-## Live Demo: [https://crud-app-with-react-redux.herokuapp.com/](https://crud-app-with-react-redux.herokuapp.com/)
+### Live Demo:
+
+[https://crud-app-with-react-redux.herokuapp.com/](https://crud-app-with-react-redux.herokuapp.com/)
 
 ## Technologies I Used:
 
